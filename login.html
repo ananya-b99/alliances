@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Log in or sign up | Alliances</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="login.css">
+    </head>
+
+    <body>
+        <nav id="nav">
+            <a class="logo" href="index.html"><img src="Alliances logo.png" alt="Alliances"></a>
+            <a class="back" href="index.html"><i class="ti ti-arrow-left"></i> Back to home</a>
+        </nav>
+
+        <main class="auth">
+
+            <!-- left: pitch -->
+            <aside class="side">
+                <div class="rings" aria-hidden="true"><span class="ring r1"></span><span class="ring r2"></span><span class="dot"></span></div>
+                <div class="side-inner">
+                    <p class="eyebrow">Welcome to Alliances</p>
+                    <h1>Your people are already on campus.</h1>
+                    <p class="side-sub">Log in or sign up and start finding them. It only takes a minute.</p>
+                    <ul class="points">
+                        <li><i class="ti ti-send"></i><span>No cold DMs. You send a request with a short note.</span></li>
+                        <li><i class="ti ti-message-check"></i><span>Chats open only after someone says yes.</span></li>
+                        <li><i class="ti ti-lock"></i><span>Posts are visible only to people who are logged in.</span></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- right: screens -->
+            <section class="stage">
+
+                <!-- 1. log in / sign up -->
+                <div id="screenAuth" class="panel">
+                    <div class="card">
+                        <h2 id="authTitle">Welcome back.</h2>
+                        <p class="lead" id="authLead">Log in to pick up where you left off.</p>
+
+                        <div class="seg" role="tablist" aria-label="Log in or sign up">
+                            <button type="button" role="tab" id="tabLogin" aria-selected="true">Log in</button>
+                            <button type="button" role="tab" id="tabSignup" aria-selected="false">Sign up</button>
+                        </div>
+
+                        <button type="button" class="btn btn-google" id="googleBtn"><i class="ti ti-brand-google"></i> Continue with Google</button>
+                        <div class="or"><span>or use your email</span></div>
+
+                        <form id="authForm" novalidate>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" autocomplete="email" placeholder="you@email.com">
+                                <p class="err" id="e-email"></p>
+                            </div>
+                            <div class="field">
+                                <label for="password">Password</label>
+                                <div class="pw">
+                                    <input id="password" type="password" autocomplete="current-password" placeholder="your password">
+                                    <button type="button" id="pwToggle" aria-label="Show password"><i class="ti ti-eye"></i></button>
+                                </div>
+                                <p class="err" id="e-password"></p>
+                            </div>
+                            <p class="msg" id="authMsg" role="status"></p>
+                            <button class="btn btn-fill btn-block" id="authSubmit" type="submit">Log in</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2. details for new accounts -->
+                <div id="screenOnboard" class="panel" hidden>
+                    <div class="card wide">
+                        <div class="progress" id="progress"><span></span><span></span><span></span></div>
+                        <p class="step-label" id="stepLabel">Step 1 of 3</p>
+                        <p class="notice" id="notice" hidden></p>
+
+                        <form id="onbForm" novalidate>
+
+                            <!-- step 1 -->
+                            <div class="step" data-step="1">
+                                <h2>First, who are you?</h2>
+                                <p class="lead">This is what people see when you send them a request.</p>
+
+                                <div class="pfp-row">
+                                    <div class="avatar" id="avatar"><img id="avatarImg" alt="" hidden><span id="avatarInit">A</span></div>
+                                    <div>
+                                        <button type="button" class="btn btn-line small" id="pfpBtn">Add a photo</button>
+                                        <button type="button" class="link" id="pfpRemove" hidden>Remove</button>
+                                        <input type="file" id="pfpFile" accept="image/*" class="sr">
+                                        <p class="hint">Optional. A square photo works best.</p>
+                                    </div>
+                                </div>
+
+                                <div class="field"><label for="name">Full name</label><input id="name" type="text" autocomplete="name" placeholder="what should we call you?"><p class="err" id="e-name"></p></div>
+                                <div class="row2">
+                                    <div class="field"><label for="username">Username</label><div class="at"><span>@</span><input id="username" type="text" autocomplete="off" placeholder="yourname"></div><p class="err" id="e-username"></p></div>
+                                    <div class="field"><label for="pronouns">Pronouns <em>(optional)</em></label><input id="pronouns" type="text" placeholder="e.g. she/her"></div>
+                                </div>
+                                <div class="field"><label for="bio">Bio <em>(optional)</em></label><textarea id="bio" rows="3" maxlength="160" placeholder="a line or two about what you're into or looking to build"></textarea><p class="hint right"><span id="bioCount">0</span>/160</p></div>
+                            </div>
+
+                            <!-- step 2 -->
+                            <div class="step" data-step="2" hidden>
+                                <h2>Where do you study?</h2>
+                                <p class="lead">So people know which department and year they're working with.</p>
+                                <div class="field"><label for="college">College</label><input id="college" type="text" autocomplete="organization" placeholder="your college or university"><p class="err" id="e-college"></p></div>
+                                <div class="field"><label for="department">Department</label>
+                                    <select id="department">
+                                        <option value="">Choose your department</option>
+                                        <option>Computer Science / CSE</option><option>Medical</option><option>Pharmacy</option><option>Agriculture</option><option>MBA</option><option>Other engineering</option><option>Other</option>
+                                    </select><p class="err" id="e-department"></p></div>
+                                <div class="field" id="deptOtherBox" hidden><label for="deptOther">Which department?</label><input id="deptOther" type="text" placeholder="type your department"><p class="err" id="e-deptOther"></p></div>
+                                <div class="row2">
+                                    <div class="field"><label for="year">Year</label>
+                                        <select id="year"><option value="">Choose your year</option><option>1st year</option><option>2nd year</option><option>3rd year</option><option>4th year</option><option>5th year</option><option>Postgraduate</option></select>
+                                        <p class="err" id="e-year"></p></div>
+                                    <div class="field"><label for="section">Section <em>(optional)</em></label><input id="section" type="text" placeholder="e.g. A"></div>
+                                </div>
+                            </div>
+
+                            <!-- step 3 -->
+                            <div class="step" data-step="3" hidden>
+                                <h2>What are you good at?</h2>
+                                <p class="lead">Pick what fits, or add your own. This is how people find you.</p>
+                                <div class="chips" id="chips"></div>
+                                <div class="addskill"><input id="skillInput" type="text" placeholder="add another skill" maxlength="30"><button type="button" class="btn btn-line small" id="skillAdd">Add</button></div>
+                                <p class="err" id="e-skills"></p>
+
+                                <h3 class="sub-h">Links <em>(optional)</em></h3>
+                                <div class="row2">
+                                    <div class="field"><label for="github">GitHub</label><input id="github" type="text" placeholder="github.com/you"></div>
+                                    <div class="field"><label for="linkedin">LinkedIn</label><input id="linkedin" type="text" placeholder="linkedin.com/in/you"></div>
+                                    <div class="field"><label for="leetcode">LeetCode</label><input id="leetcode" type="text" placeholder="leetcode.com/u/you"></div>
+                                    <div class="field"><label for="otherlink">Anything else</label><input id="otherlink" type="text" placeholder="portfolio, paper, profile"></div>
+                                </div>
+                                <p class="err" id="e-links"></p>
+                            </div>
+
+                            <div class="nav-btns">
+                                <button type="button" class="btn btn-line" id="backBtn">Back</button>
+                                <button type="submit" class="btn btn-fill" id="nextBtn">Continue</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 3. done -->
+                <div id="screenDone" class="panel" hidden>
+                    <div class="card done">
+                        <div class="avatar big" id="doneAvatar"><img id="doneImg" alt="" hidden><span id="doneInit">A</span></div>
+                        <h2 id="doneTitle">You're in.</h2>
+                        <p class="lead" id="doneLead"></p>
+                        <div class="summary" id="summary"></div>
+                        <div class="done-btns">
+                            <a href="dashboard.html" class="btn btn-fill">Go to my dashboard</a>
+                        </div>
+                        <p class="hint">Taking you to your dashboard. You can edit your details later from your profile.</p>
+                    </div>
+                </div>
+
+                <button type="button" class="link dev" id="resetBtn">Clear saved demo accounts</button>
+            </section>
+        </main>
+
+        <script src="login.js"></script>
+    </body>
+</html>
